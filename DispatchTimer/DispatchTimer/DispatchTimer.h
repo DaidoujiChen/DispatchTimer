@@ -8,10 +8,37 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^voidBlock)(void);
+
 @interface DispatchTimer : NSObject
 
-+(DispatchTimer*) fireBlock : (void(^)(void)) block afterDelay : (NSTimeInterval) delay timeInterval : (NSTimeInterval) timeInterval onMainThread : (BOOL) onMainThread once : (BOOL) once;
+#pragma mark - Fire Immediately
 
++(DispatchTimer*) scheduledOnMainThreadImmediatelyWithTimeInterval : (NSTimeInterval) timeInterval
+                                                             block : (voidBlock) block;
+
++(DispatchTimer*) scheduledInBackgroundImmediatelyWithTimeInterval : (NSTimeInterval) timeInterval
+                                                             block : (voidBlock) block;
+
+#pragma mark - Fire After Delay
+
++(DispatchTimer*) scheduledOnMainThreadAfterDelay : (NSTimeInterval) delay
+                                     timeInterval : (NSTimeInterval) timeInterval
+                                            block : (voidBlock) block;
+
++(DispatchTimer*) scheduledInBackgroundAfterDelay : (NSTimeInterval) delay
+                                     timeInterval : (NSTimeInterval) timeInterval
+                                            block : (voidBlock) block;
+
+#pragma mark - Fire Once
+
++(DispatchTimer*) scheduledOnMainThreadOnceAfterDelay : (NSTimeInterval) delay
+                                                block : (voidBlock) block;
+
++(DispatchTimer*) scheduledInBackgroundOnceAfterDelay : (NSTimeInterval) delay
+                                                block : (voidBlock) block;
+
+#pragma mark - Cancel Timer
 
 -(void) invalidate;
 

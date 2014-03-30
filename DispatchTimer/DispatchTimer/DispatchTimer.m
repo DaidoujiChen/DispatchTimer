@@ -10,47 +10,109 @@
 
 @interface DispatchTimer ()
 @property (nonatomic) dispatch_source_t source;
++(DispatchTimer*) fireBlock : (voidBlock) block
+                 afterDelay : (NSTimeInterval) delay
+               timeInterval : (NSTimeInterval) timeInterval
+               onMainThread : (BOOL) onMainThread
+                  isRunOnce : (BOOL) isRunOnce;
 @end
 
 @implementation DispatchTimer
 
-+(DispatchTimer*) fireBlock : (void(^)(void)) block afterDelay : (NSTimeInterval) delay timeInterval : (NSTimeInterval) timeInterval onMainThread : (BOOL) onMainThread once : (BOOL) once {
-    
-    DispatchTimer *newTimer = [DispatchTimer new];
+#pragma mark - class method
 
-    if (onMainThread) {
-        newTimer.source = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
-    } else {
-        newTimer.source = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
-    }
-    
-    if (once) {
-        dispatch_source_set_timer(newTimer.source,
-                                  dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC),
-                                  DISPATCH_TIME_FOREVER, 0);
-        void(^onceBlock)(void) = ^() {
-            block();
-            [newTimer invalidate];
-        };
-        dispatch_source_set_event_handler(newTimer.source, onceBlock);
-    } else {
-        dispatch_source_set_timer(newTimer.source,
-                                  dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC),
-                                  timeInterval * NSEC_PER_SEC, 0);
-        dispatch_source_set_event_handler(newTimer.source, block);
-    }
-    
-    dispatch_resume(newTimer.source);
-    
-    return newTimer;
-    
++(DispatchTimer*) scheduledOnMainThreadImmediatelyWithTimeInterval : (NSTimeInterval) timeInterval
+                                                             block : (voidBlock) block {
+    return [self fireBlock:block afterDelay:0 timeInterval:timeInterval onMainThread:YES isRunOnce:NO];
 }
+
++(DispatchTimer*) scheduledInBackgroundImmediatelyWithTimeInterval : (NSTimeInterval) timeInterval
+                                                             block : (voidBlock) block {
+    return [self fireBlock:block afterDelay:0 timeInterval:timeInterval onMainThread:NO isRunOnce:NO];
+}
+
++(DispatchTimer*) scheduledOnMainThreadAfterDelay : (NSTimeInterval) delay
+                                     timeInterval : (NSTimeInterval) timeInterval
+                                            block : (voidBlock) block {
+    return [self fireBlock:block afterDelay:delay timeInterval:timeInterval onMainThread:YES isRunOnce:NO];
+}
+
++(DispatchTimer*) scheduledInBackgroundAfterDelay : (NSTimeInterval) delay
+                                     timeInterval : (NSTimeInterval) timeInterval
+                                            block : (voidBlock) block {
+    return [self fireBlock:block afterDelay:delay timeInterval:timeInterval onMainThread:NO isRunOnce:NO];
+}
+
++(DispatchTimer*) scheduledOnMainThreadOnceAfterDelay : (NSTimeInterval) delay
+                                                block : (voidBlock) block {
+    return [self fireBlock:block afterDelay:delay timeInterval:0 onMainThread:YES isRunOnce:YES];
+}
+
++(DispatchTimer*) scheduledInBackgroundOnceAfterDelay : (NSTimeInterval) delay
+                                                block : (voidBlock) block {
+    return [self fireBlock:block afterDelay:delay timeInterval:0 onMainThread:NO isRunOnce:YES];
+}
+
+#pragma mark - instance method
 
 -(void) invalidate {
     if (self.source) {
         dispatch_source_cancel(self.source);
         self.source = nil;
     }
+}
+
+#pragma mark - private
+
++(DispatchTimer*) fireBlock : (voidBlock) block
+                 afterDelay : (NSTimeInterval) delay
+               timeInterval : (NSTimeInterval) timeInterval
+               onMainThread : (BOOL) onMainThread
+                  isRunOnce : (BOOL) isRunOnce {
+    
+    DispatchTimer *newTimer = [DispatchTimer new];
+
+    if (onMainThread) {
+        newTimer.source = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER,
+                                                 0,
+                                                 0,
+                                                 dispatch_get_main_queue());
+    } else {
+        newTimer.source = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER,
+                                                 0,
+                                                 0,
+                                                 dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
+    }
+    
+    if (isRunOnce) {
+        
+        dispatch_source_set_timer(newTimer.source,
+                                  dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC),
+                                  DISPATCH_TIME_FOREVER,
+                                  0);
+        
+        void(^onceBlock)(void) = ^() {
+            block();
+            [newTimer invalidate];
+        };
+        
+        dispatch_source_set_event_handler(newTimer.source, onceBlock);
+        
+    } else {
+        
+        dispatch_source_set_timer(newTimer.source,
+                                  dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC),
+                                  timeInterval * NSEC_PER_SEC,
+                                  0);
+        
+        dispatch_source_set_event_handler(newTimer.source, block);
+        
+    }
+    
+    dispatch_resume(newTimer.source);
+    
+    return newTimer;
+    
 }
 
 @end
