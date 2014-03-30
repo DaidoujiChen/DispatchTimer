@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MainViewController.h
 //  DispatchTimer
 //
 //  Created by 啟倫 陳 on 2014/3/30.
@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+#import "DispatchTimer.h"
+
+@interface MainViewController : UIViewController {
+    DispatchTimer *myTimer;
+}
 
 @end

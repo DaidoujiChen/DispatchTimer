@@ -13,14 +13,15 @@
 		01877E8418E81ACE0069D3F8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01877E8218E81ACE0069D3F8 /* InfoPlist.strings */; };
 		01877E8618E81ACE0069D3F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01877E8518E81ACE0069D3F8 /* main.m */; };
 		01877E8A18E81ACE0069D3F8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01877E8918E81ACE0069D3F8 /* AppDelegate.m */; };
-		01877E8D18E81ACE0069D3F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01877E8B18E81ACE0069D3F8 /* Main.storyboard */; };
-		01877E9018E81ACE0069D3F8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01877E8F18E81ACE0069D3F8 /* ViewController.m */; };
 		01877E9218E81ACE0069D3F8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01877E9118E81ACE0069D3F8 /* Images.xcassets */; };
 		01877E9918E81ACE0069D3F8 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01877E9818E81ACE0069D3F8 /* XCTest.framework */; };
 		01877E9A18E81ACE0069D3F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01877E7918E81ACE0069D3F8 /* Foundation.framework */; };
 		01877E9B18E81ACE0069D3F8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01877E7D18E81ACE0069D3F8 /* UIKit.framework */; };
 		01877EA318E81ACE0069D3F8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01877EA118E81ACE0069D3F8 /* InfoPlist.strings */; };
 		01877EA518E81ACE0069D3F8 /* DispatchTimerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01877EA418E81ACE0069D3F8 /* DispatchTimerTests.m */; };
+		01877EB118E81AF30069D3F8 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01877EAF18E81AF30069D3F8 /* MainViewController.m */; };
+		01877EB218E81AF30069D3F8 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01877EB018E81AF30069D3F8 /* MainViewController.xib */; };
+		01877EB618E81BF50069D3F8 /* DispatchTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 01877EB518E81BF50069D3F8 /* DispatchTimer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,15 +45,17 @@
 		01877E8718E81ACE0069D3F8 /* DispatchTimer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DispatchTimer-Prefix.pch"; sourceTree = "<group>"; };
 		01877E8818E81ACE0069D3F8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		01877E8918E81ACE0069D3F8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		01877E8C18E81ACE0069D3F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		01877E8E18E81ACE0069D3F8 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		01877E8F18E81ACE0069D3F8 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		01877E9118E81ACE0069D3F8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		01877E9718E81ACE0069D3F8 /* DispatchTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DispatchTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		01877E9818E81ACE0069D3F8 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		01877EA018E81ACE0069D3F8 /* DispatchTimerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DispatchTimerTests-Info.plist"; sourceTree = "<group>"; };
 		01877EA218E81ACE0069D3F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		01877EA418E81ACE0069D3F8 /* DispatchTimerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DispatchTimerTests.m; sourceTree = "<group>"; };
+		01877EAE18E81AF30069D3F8 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		01877EAF18E81AF30069D3F8 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		01877EB018E81AF30069D3F8 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		01877EB418E81BF50069D3F8 /* DispatchTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DispatchTimer.h; path = DispatchTimer/DispatchTimer.h; sourceTree = "<group>"; };
+		01877EB518E81BF50069D3F8 /* DispatchTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DispatchTimer.m; path = DispatchTimer/DispatchTimer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,11 +115,12 @@
 		01877E7F18E81ACE0069D3F8 /* DispatchTimer */ = {
 			isa = PBXGroup;
 			children = (
+				01877EB318E81BBA0069D3F8 /* DispatchTimer */,
 				01877E8818E81ACE0069D3F8 /* AppDelegate.h */,
 				01877E8918E81ACE0069D3F8 /* AppDelegate.m */,
-				01877E8B18E81ACE0069D3F8 /* Main.storyboard */,
-				01877E8E18E81ACE0069D3F8 /* ViewController.h */,
-				01877E8F18E81ACE0069D3F8 /* ViewController.m */,
+				01877EAE18E81AF30069D3F8 /* MainViewController.h */,
+				01877EAF18E81AF30069D3F8 /* MainViewController.m */,
+				01877EB018E81AF30069D3F8 /* MainViewController.xib */,
 				01877E9118E81ACE0069D3F8 /* Images.xcassets */,
 				01877E8018E81ACE0069D3F8 /* Supporting Files */,
 			);
@@ -150,6 +154,15 @@
 				01877EA118E81ACE0069D3F8 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		01877EB318E81BBA0069D3F8 /* DispatchTimer */ = {
+			isa = PBXGroup;
+			children = (
+				01877EB418E81BF50069D3F8 /* DispatchTimer.h */,
+				01877EB518E81BF50069D3F8 /* DispatchTimer.m */,
+			);
+			name = DispatchTimer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,8 +242,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				01877E9218E81ACE0069D3F8 /* Images.xcassets in Resources */,
+				01877EB218E81AF30069D3F8 /* MainViewController.xib in Resources */,
 				01877E8418E81ACE0069D3F8 /* InfoPlist.strings in Resources */,
-				01877E8D18E81ACE0069D3F8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,9 +262,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01877E9018E81ACE0069D3F8 /* ViewController.m in Sources */,
 				01877E8A18E81ACE0069D3F8 /* AppDelegate.m in Sources */,
+				01877EB118E81AF30069D3F8 /* MainViewController.m in Sources */,
 				01877E8618E81ACE0069D3F8 /* main.m in Sources */,
+				01877EB618E81BF50069D3F8 /* DispatchTimer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,14 +294,6 @@
 				01877E8318E81ACE0069D3F8 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		01877E8B18E81ACE0069D3F8 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				01877E8C18E81ACE0069D3F8 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		01877EA118E81ACE0069D3F8 /* InfoPlist.strings */ = {
