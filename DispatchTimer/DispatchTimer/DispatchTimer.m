@@ -10,11 +10,7 @@
 
 @interface DispatchTimer ()
 @property (nonatomic) dispatch_source_t source;
-+(DispatchTimer*) fireBlock : (voidBlock) block
-                 afterDelay : (NSTimeInterval) delay
-               timeInterval : (NSTimeInterval) timeInterval
-               onMainThread : (BOOL) onMainThread
-                  isRunOnce : (BOOL) isRunOnce;
+DispatchTimer* fireBlock(voidBlock block, NSTimeInterval delay, NSTimeInterval timeInterval, BOOL onMainThread, BOOL isRunOnce);
 @end
 
 @implementation DispatchTimer
@@ -23,34 +19,34 @@
 
 +(DispatchTimer*) scheduledOnMainThreadImmediatelyWithTimeInterval : (NSTimeInterval) timeInterval
                                                              block : (voidBlock) block {
-    return [self fireBlock:block afterDelay:0 timeInterval:timeInterval onMainThread:YES isRunOnce:NO];
+    return fireBlock(block, 0, timeInterval, YES, NO);
 }
 
 +(DispatchTimer*) scheduledInBackgroundImmediatelyWithTimeInterval : (NSTimeInterval) timeInterval
                                                              block : (voidBlock) block {
-    return [self fireBlock:block afterDelay:0 timeInterval:timeInterval onMainThread:NO isRunOnce:NO];
+    return fireBlock(block, 0, timeInterval, NO, NO);
 }
 
 +(DispatchTimer*) scheduledOnMainThreadAfterDelay : (NSTimeInterval) delay
                                      timeInterval : (NSTimeInterval) timeInterval
                                             block : (voidBlock) block {
-    return [self fireBlock:block afterDelay:delay timeInterval:timeInterval onMainThread:YES isRunOnce:NO];
+    return fireBlock(block, delay, timeInterval, YES, NO);
 }
 
 +(DispatchTimer*) scheduledInBackgroundAfterDelay : (NSTimeInterval) delay
                                      timeInterval : (NSTimeInterval) timeInterval
                                             block : (voidBlock) block {
-    return [self fireBlock:block afterDelay:delay timeInterval:timeInterval onMainThread:NO isRunOnce:NO];
+    return fireBlock(block, delay, timeInterval, NO, NO);
 }
 
 +(DispatchTimer*) scheduledOnMainThreadOnceAfterDelay : (NSTimeInterval) delay
                                                 block : (voidBlock) block {
-    return [self fireBlock:block afterDelay:delay timeInterval:0 onMainThread:YES isRunOnce:YES];
+    return fireBlock(block, delay, 0, YES, YES);
 }
 
 +(DispatchTimer*) scheduledInBackgroundOnceAfterDelay : (NSTimeInterval) delay
                                                 block : (voidBlock) block {
-    return [self fireBlock:block afterDelay:delay timeInterval:0 onMainThread:NO isRunOnce:YES];
+    return fireBlock(block, delay, 0, NO, YES);
 }
 
 #pragma mark - instance method
@@ -64,14 +60,10 @@
 
 #pragma mark - private
 
-+(DispatchTimer*) fireBlock : (voidBlock) block
-                 afterDelay : (NSTimeInterval) delay
-               timeInterval : (NSTimeInterval) timeInterval
-               onMainThread : (BOOL) onMainThread
-                  isRunOnce : (BOOL) isRunOnce {
+DispatchTimer* fireBlock(voidBlock block, NSTimeInterval delay, NSTimeInterval timeInterval, BOOL onMainThread, BOOL isRunOnce) {
     
     DispatchTimer *newTimer = [DispatchTimer new];
-
+    
     if (onMainThread) {
         newTimer.source = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER,
                                                  0,
@@ -112,7 +104,6 @@
     dispatch_resume(newTimer.source);
     
     return newTimer;
-    
 }
 
 @end
