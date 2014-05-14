@@ -10,6 +10,7 @@
 
 @interface DispatchTimer ()
 @property (nonatomic) dispatch_source_t source;
+@property (nonatomic, assign) DispatchTimerStatus status;
 DispatchTimer* fireBlock(voidBlock block, NSTimeInterval delay, NSTimeInterval timeInterval, BOOL onMainThread, BOOL isRunOnce);
 @end
 
@@ -53,9 +54,14 @@ DispatchTimer* fireBlock(voidBlock block, NSTimeInterval delay, NSTimeInterval t
 
 -(void) invalidate {
     if (self.source) {
+        self.status = DispatchTimerStatusInvalidate;
         dispatch_source_cancel(self.source);
         self.source = nil;
     }
+}
+
+-(DispatchTimerStatus) status {
+    return self.status;
 }
 
 #pragma mark - private
@@ -63,6 +69,7 @@ DispatchTimer* fireBlock(voidBlock block, NSTimeInterval delay, NSTimeInterval t
 DispatchTimer* fireBlock(voidBlock block, NSTimeInterval delay, NSTimeInterval timeInterval, BOOL onMainThread, BOOL isRunOnce) {
     
     DispatchTimer *newTimer = [DispatchTimer new];
+    newTimer.status = DispatchTimerStatusRunning;
     
     if (onMainThread) {
         newTimer.source = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER,

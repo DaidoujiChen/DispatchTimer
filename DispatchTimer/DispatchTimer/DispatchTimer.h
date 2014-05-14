@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+    DispatchTimerStatusRunning,
+    DispatchTimerStatusInvalidate
+} DispatchTimerStatus;
+
 typedef void(^voidBlock)(void);
 
 @interface DispatchTimer : NSObject
@@ -41,5 +46,6 @@ typedef void(^voidBlock)(void);
 #pragma mark - Cancel Timer
 
 -(void) invalidate;
+-(DispatchTimerStatus) status;
 
 @end
