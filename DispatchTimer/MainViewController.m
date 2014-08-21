@@ -14,14 +14,14 @@
 
 @implementation MainViewController
 
--(void) didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 #pragma mark - life cycle
 
--(void) viewDidLoad {
-    [super viewDidLoad];
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	self.myTimer = [DispatchTimer scheduledInBackgroundAfterDelay:1.0f timeInterval:1.0f block: ^{
+	    static int count = 0;
+	    NSLog(@"count : %d", count++);
+	}];
 }
 
 @end

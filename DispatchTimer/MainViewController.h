@@ -10,8 +10,8 @@
 
 #import "DispatchTimer.h"
 
-@interface MainViewController : UIViewController {
-    DispatchTimer *myTimer;
-}
+@interface MainViewController : UIViewController
+
+@property (nonatomic, strong) DispatchTimer *myTimer;
 
 @end
