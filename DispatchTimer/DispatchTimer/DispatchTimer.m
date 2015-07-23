@@ -81,7 +81,9 @@
 	if (isRunOnce) {
 		dispatch_source_set_timer(newTimer.source, dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 0);
 		void (^onceBlock)(void) = ^() {
-			block();
+            if (block) {
+                block();
+            }
 			[newTimer invalidate];
 		};
 		dispatch_source_set_event_handler(newTimer.source, onceBlock);
